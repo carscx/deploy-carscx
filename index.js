@@ -1,4 +1,5 @@
-const express = require("express");const bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 const { exec } = require("child_process");
 const path = require("path");
 
@@ -9,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.post("/deploy", (req, res) => {
-  exec("bash deploy.sh", (error, stdout, stderr) => {
+  exec("bash $HOME/deploy.sh", (error, stdout, stderr) => {
     if (error) {
       console.error(`Error ejecutando el comando: ${error}`);
       return res
