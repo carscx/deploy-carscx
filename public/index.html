@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interfaz de Despliegue</title>
+</head>
+<body>
+  <h1>Interfaz de Despliegue</h1>
+  <form action="/deploy" method="post">
+    <button type="submit">Desplegar</button>
+  </form>
+  <div id="output"></div>
+  <script>
+    const form = document.querySelector('form');
+    const outputDiv = document.getElementById('output');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      outputDiv.textContent = 'Ejecutando...';
+
+      const response = await fetch('/deploy', {
+        method: 'POST'
+      });
+      const text = await response.text();
+      outputDiv.textContent = text;
+    });
+  </script>
+</body>
+</html>
