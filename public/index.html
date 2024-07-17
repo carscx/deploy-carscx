@@ -4,13 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Interfaz de Despliegue</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #1e1e1e;
+      color: #c5c5c5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #4caf50;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    #output {
+      background-color: #000;
+      color: #0f0;
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      height: 400px;
+      overflow-y: scroll;
+      border: 1px solid #4caf50;
+      white-space: pre-wrap;
+      /* mantiene los saltos de línea */
+    }
+  </style>
 </head>
 <body>
   <h1>Interfaz de Despliegue</h1>
   <form action="/deploy" method="post">
     <button type="submit">Desplegar</button>
   </form>
-  <div id="output"></div>
+  <div id="output">Esperando ejecución...</div>
   <script>
     const form = document.querySelector('form');
     const outputDiv = document.getElementById('output');
@@ -23,7 +57,7 @@
         method: 'POST'
       });
       const text = await response.text();
-      outputDiv.textContent = text;
+      outputDiv.innerHTML = text;
     });
   </script>
 </body>
